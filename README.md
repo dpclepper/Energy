@@ -1,8 +1,13 @@
-# Renewable Energy vs. Fossil Fuel Consumption/Production Analysis (using R)
+# Renewable Energy vs. Fossil Fuel Consumption Data Analysis
 
-# 1. Introduction to Datasets
+# 1. Introduction
 
-I explored three datasets within this project and analyzed them individually and against each other. The three datasets are: renewable energy consumption, fossil fuel energy consumption, and renewable electricity output. The variables that I considered within each are as follows:
+I explored three datasets within this project and analyzed them individually and against each other. The three datasets are: renewable energy consumption, fossil fuel energy consumption, and renewable electricity output from The World Bank. The links to the datasets are as follows:
+* https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS
+* https://data.worldbank.org/indicator/EG.USE.COMM.FO.ZS
+* https://data.worldbank.org/indicator/EG.ELC.RNEW.ZS
+
+The variables that I considered within each are as follows:
 * Country Name
 * Year
 * Income group: high income, low income, lower middle income, and upper middle income
@@ -58,11 +63,39 @@ Next, I decided to plot the percent of Fossil Fuel use that has changed between 
 
 For the regression model, I assigned change to the dependent variable, and Income Group and Region to the independent variables. After this, the scatterplot of the variables against each other was created (Figure 13). I mainly did this to look at the two independent variables (region and income group). They are both discrete, so I won’t be able to look for independence or correlation, but I can look to make sure the data is equal. Unfortunately, as you can see, North America and South Asia only have 1 income group. There is a chance of this causing a problem with the R code, so I should keep that in mind.
 
+| ![Figure14.png](Images/Figure14.png?raw=true) |
+|:--:|
+| ***Figure 14*** |
 
+| ![Figure15.png](Images/Figure15.png?raw=true) |
+|:--:|
+| ***Figure 15*** |
 
+After checking the variables versus each other, I wanted to check the normality assumption, doing so by making QQ Plots with the residuals of the model. The left plot is the normal QQ plot and the right plot is a studentized residual QQ plot (Figure 14). They appear to show a little variation at the beginning and end, but most of the data appears to be normal. I then went on to plot the residuals vs. the fitted value, doing so for both the normal residuals and studentized (Figure 15). Right away, it appears that there is a possible outlier, which is shown by the dot near the bottom of the graphs. Looking at the data, there appears to be a possible bow at the beginning of the residuals and even a double bow, but for the most part, the data appears to be satisfactory overall.
 
+| ![Figure16.png](Images/Figure16.png?raw=true) |
+|:--:|
+| ***Figure 16*** |
 
+| ![Figure17.png](Images/Figure17.png?raw=true) |
+|:--:|
+| ***Figure 17*** |
 
+| ![Figure18.png](Images/Figure18.png?raw=true) |
+|:--:|
+| ***Figure 18*** |
+
+After creating the Linear Regression, I created an ANOVA table to look at the model (Figure 16). The Anova table shows that under significance level 0.001, so the null hypothesis of a correlation between variables is rejected for both variables. This means that both Region and Income Group have some sort of impact on the Change variable. I then wanted to view the summary statistics so I could see what specific variables were important (Figure 17). Looking at the summary statistics, it appeared that the Region Europe & Central Asia and Income Group Lower Middle Income have an impact on the dependent variable under a significance level of 0 and 0.01 respectively.
+
+There are also two other variables that appear to have an impact under significance level 0.1, but I had used 0.01 on an earlier slide, so it is not as accurate as I would like. The overall model has a higher F-statistic than the one from a table, so the model appears to work as intended. The model also has an adjusted R squared of 0.5144, which isn’t bad, but doesn’t suggest too strong of a correlation.
+
+After looking at this, I decided to try to make a prediction. I used the Region Europe & Central Asia, and then tried to make a prediction with all the different income groups. Unfortunately, the Confidence Interval for all the predictions included 0, so I was unable to use any of these predictions (Figure 18). However, predictions were not in the intended scope, so I decided my investigation toward a prediction model was sufficient.
+
+# 4. Conclusion
+
+There were multiple conclusions drawn through the breadth of my data analysis. I determined that there is a discrepancy between regions in terms of fossil fuel consumption and renewable energy consumption/output; South Asian and Sub-Saharan African countries held the highest renewable energy consumption and renewable electricity output as well as the lowest fossil fuel consumption among the seven regions by a distinct margin. Fossil fuel use also showed to be very consistent throughout the years and renewable energy declined.
+
+I also concluded that a linear regression does not describe the data very accurately, as the regression had a low correlation coefficient and proved unsuccessful due to a lack of numerically definable variables. However, I was still able to visualize multiple relationships and perform statistical analyses.
 
 
 
